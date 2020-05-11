@@ -1,14 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
 	public List<GameObject> targets;
+	public TextMeshProUGUI scoreText;
+	private int score = 0;
 
     void Start()
     {
 		StartCoroutine(TargetSpawner());
+		UpdateScore(0);
     }
 		
     void Update()
@@ -26,13 +30,14 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	private void OnMouseDown()
+	public void UpdateScore(int scoreToAdd)
 	{
-		Destroy(gameObject);
+		score += scoreToAdd;
+		if(score < 0)
+		{
+			score = 0;
+		}
+		scoreText.text = "Score: " + score;
 	}
 
-	private void OnTriggerEnter(Collider other)
-	{
-		Destroy(gameObject);
-	}
 }
