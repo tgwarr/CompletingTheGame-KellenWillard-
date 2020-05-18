@@ -40,6 +40,7 @@ public class Target : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
+		eventManager.gameOverEvent?.Invoke();
 		Destroy(gameObject);
 	}
 }
